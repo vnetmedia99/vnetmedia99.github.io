@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>404 - Aduh Keliru!</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Anti geser */
+      background-color: #000000;
+    }
+
+    body {
+      font-size: 11px;
+      color: #808080;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    img.icon {
+      max-width: 90px;
+      height: auto;
+      margin: 15px 0;
+    }
+
+    .url-salah {
+      color: red;
+      font-weight: bold;
+      word-break: break-all;
+      display: block;
+      margin: 10px 0;
+    }
+
+    .info-box {
+      background: #000;
+      padding: 10px;
+      margin: 15px 0;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: #cc2222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p><font color="red"><big><b>ADUH KELIRU <i>!!!</i></b></big></font></p>
+    
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXEcwUFn_Le2bxcQIVfyhG1Xy5WlvsiuB6pEP6TQLOXM19VAzRsPvmGN2cLEmuZPlYH9-YQHMKGNGrPkDZLs5c1h30CGs_o74dJ04V3mXn8sk1Ag6MmjmA_pa_Tsq6ZMYG0464CwV4s_F6_aqhtOlADfzHjycwDowWHREU7sejQsGWhNxx0VpNjwSzJalT/s90/keliru.jpg" class="icon" alt="keliru">
+
+    <p>Sebab ndak pernah ada itu yang namanya:<br>
+    <span class="url-salah" id="urlSalah"></span></p>
+
+    <div class="info-box">
+      <strong>[Your Public IP is already recorded in the logs]</strong><br>
+      IP: <strong id="ip" style="color:#eee">...</strong><br>
+      Negara: <strong id="negara" style="color:#eee">...</strong><br>
+      ISP: <strong id="isp" style="color:#eee">...</strong>
+    </div>
+
+    <a href="/">[ Klik di sini untuk kembali ke Jalan yang Benar ]</a><br><br>
+    
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4HRAUTd4Ws37CtqpoCxl1blAE0q7mJaiu8T04k3V3LKZfTYGgExDzwDlmJKTgoAKhC00X0U_LtAhwWGeZThJLTVmMjz8cVcSWyY7OiwV2_7vHedo6QcyEeJHsxNih7eGtjsEMIq3aFThDWmWJUt8OM0e89oSTIGXNDfchF8eZzIS-dqmClecoJG30n0gN/s99/plungkernews.gif" alt="plungkernews" style="max-width: 60px;" />
+  </div>
+
+  <script>
+    // 1. Ambil URL saat ini
+    document.getElementById('urlSalah').textContent = window.location.href;
+
+    // 2. Ambil Info IP dll
+    fetch('https://ipwho.is/')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip || '-';
+        document.getElementById('negara').textContent = data.country || '-';
+        document.getElementById('isp').textContent = (data.connection && data.connection.isp) ? data.connection.isp : '-';
+      });
+
+    // 3. Auto Redirect 5 Detik
+    setTimeout(function() {
+        window.location.href = "/";
+    }, 5000); 
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"2b8e8ad4cf464772b9f530316a9bd03d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
